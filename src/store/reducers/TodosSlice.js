@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const todosSlice = createSlice({
   name: "todos",
@@ -19,17 +19,23 @@ const todosSlice = createSlice({
         title: "Viec 3",
         completed: false,
       },
-      {
-        id: 4,
-        title: "Viec 4",
-        completed: false,
-      },
-      {
-        id: 5,
-        title: "Viec 5",
-        completed: false,
-      },
     ],
+  },
+  reducers: {
+    addTodo: {
+      reducer(state, action) {
+        state.allTodos.push(action.payload);
+      },
+      prepare(title) {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            completed: false,
+          },
+        };
+      },
+    },
   },
 });
 
@@ -38,5 +44,8 @@ const todosReducer = todosSlice.reducer;
 
 // Selector
 export const todoSelector = (state) => state.todosReducer.allTodos;
+
+// Action export
+export const { addTodo } = todosSlice.actions;
 
 export default todosReducer;
