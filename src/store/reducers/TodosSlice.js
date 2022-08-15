@@ -45,6 +45,10 @@ const todosSlice = createSlice({
         return todo;
       });
     },
+    deleteTodo(state, action) {
+      const todoId = action.payload;
+      state.allTodos = state.allTodos.filter((todo) => todo.id !== todoId);
+    },
   },
 });
 
@@ -55,6 +59,6 @@ const todosReducer = todosSlice.reducer;
 export const todoSelector = (state) => state.todosReducer.allTodos;
 
 // Action export
-export const { addTodo, markComplete } = todosSlice.actions;
+export const { addTodo, markComplete, deleteTodo } = todosSlice.actions;
 
 export default todosReducer;
