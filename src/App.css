@@ -23,6 +23,10 @@
   float: right;
 }
 
+.todo-list li input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 .todo-list li.completed {
   background: rgb(119, 218, 243);
 }

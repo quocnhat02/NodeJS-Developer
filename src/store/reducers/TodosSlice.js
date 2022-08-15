@@ -1,5 +1,13 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
+
+// Reducer Thunk
+export const getTodos = createAsyncThunk("todos/todosFetched", async () => {
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/todos?_limit=5"
+  );
+  return response.data;
+});
 
 const todosSlice = createSlice({
   name: "todos",
@@ -34,26 +42,36 @@ const todosSlice = createSlice({
       const todoId = action.payload;
       state.allTodos = state.allTodos.filter((todo) => todo.id !== todoId);
     },
-    todosFetched(state, action) {
+    // todosFetched(state, action) {
+    //   state.allTodos = action.payload;
+    // },
+  },
+  extraReducers: {
+    [getTodos.pending]: (state, action) => {
+      console.log("Fetching todos from backend ...");
+    },
+    [getTodos.fulfilled]: (state, action) => {
+      console.log("Done");
       state.allTodos = action.payload;
+    },
+    [getTodos.rejected]: (state, action) => {
+      console.log("Faild to get todos!!!");
     },
   },
 });
 
 // Async action creator, action and reducer dispatch
-export const getTodos = () => {
-  const getTodosAsync = async (dispatch) => {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos?_limit=5"
-      );
-      dispatch(todosFetched(response.data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return getTodosAsync;
-};
+
+// export const getTodos = () => async (dispatch) => {
+//   try {
+// const response = await axios.get(
+//   "https://jsonplaceholder.typicode.com/todos?_limit=5"
+// );
+//     dispatch(todosFetched(response.data));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // Reducer
 const todosReducer = todosSlice.reducer;
