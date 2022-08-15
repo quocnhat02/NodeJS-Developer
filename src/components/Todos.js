@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   todoSelector,
   markComplete,
   deleteTodo,
+  getTodos,
 } from "../store/reducers/TodosSlice";
 import TodoForm from "./TodoForm";
 
@@ -18,6 +19,11 @@ const Todos = () => {
   const deleteSingleTodo = (todoId) => {
     dispatch(deleteTodo(todoId));
   };
+
+  useEffect(() => {
+    // send request to jsonplaceholder
+    dispatch(getTodos());
+  }, [dispatch]);
 
   return (
     <div className="todo-list">

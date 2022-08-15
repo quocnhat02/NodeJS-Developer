@@ -1,25 +1,10 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const todosSlice = createSlice({
   name: "todos",
   initialState: {
-    allTodos: [
-      {
-        id: 1,
-        title: "Viec 1",
-        completed: false,
-      },
-      {
-        id: 2,
-        title: "Viec 2",
-        completed: false,
-      },
-      {
-        id: 3,
-        title: "Viec 3",
-        completed: false,
-      },
-    ],
+    allTodos: [],
   },
   reducers: {
     addTodo: {
@@ -49,8 +34,26 @@ const todosSlice = createSlice({
       const todoId = action.payload;
       state.allTodos = state.allTodos.filter((todo) => todo.id !== todoId);
     },
+    todosFetched(state, action) {
+      state.allTodos = action.payload;
+    },
   },
 });
+
+// Async action creator, action and reducer dispatch
+export const getTodos = () => {
+  const getTodosAsync = async (dispatch) => {
+    try {
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/todos?_limit=5"
+      );
+      dispatch(todosFetched(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return getTodosAsync;
+};
 
 // Reducer
 const todosReducer = todosSlice.reducer;
@@ -59,6 +62,7 @@ const todosReducer = todosSlice.reducer;
 export const todoSelector = (state) => state.todosReducer.allTodos;
 
 // Action export
-export const { addTodo, markComplete, deleteTodo } = todosSlice.actions;
+export const { addTodo, markComplete, deleteTodo, todosFetched } =
+  todosSlice.actions;
 
 export default todosReducer;
