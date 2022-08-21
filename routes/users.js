@@ -17,4 +17,8 @@ router.post("/", (req, res) => {
   res.json(`User with the name ${user.firstName} added to the database! `);
 });
 
+router.get("/:id", (req, res) => {
+  res.send(`Route has params: ${req.params.id}`);
+});
+
 export default router;
