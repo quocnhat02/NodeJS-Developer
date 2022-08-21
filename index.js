@@ -7,5 +7,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, () =>
-  console.log(`Server running on port: http://localhost:${PORT}`)
+  console.log(`Server Running on port: http://localhost:${PORT}`)
 );
