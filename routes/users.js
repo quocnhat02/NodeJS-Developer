@@ -5,10 +5,12 @@ const router = express.Router();
 
 const users = [];
 
+// get users
 router.get("/", (req, res) => {
   res.json(users);
 });
 
+// create user
 router.post("/", (req, res) => {
   const user = req.body;
 
@@ -17,8 +19,13 @@ router.post("/", (req, res) => {
   res.json(`User with the name ${user.firstName} added to the database! `);
 });
 
+// get detail user
 router.get("/:id", (req, res) => {
-  res.send(`Route has params: ${req.params.id}`);
+  const { id } = req.params;
+
+  const foundUser = users.find((user) => user.id === id);
+
+  res.send(foundUser);
 });
 
 export default router;
