@@ -13,5 +13,3 @@ module.exports = {
   REQUEST_TIMEOUT,
   send,
 };
-
-console.log("Hello");
