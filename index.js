@@ -25,9 +25,10 @@ server.on("request", (req, res) => {
   if (req.method === "POST" && items[1] === "friends") {
     req.on("data", (data) => {
       const friend = data.toString();
-      console.log("Request:", data);
+      console.log("Request:", friend);
       friends.push(JSON.parse(friend));
     });
+    req.pipe(res);
   } else if (req.method === "GET" && items[1] === "/friends") {
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
