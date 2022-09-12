@@ -3,8 +3,8 @@ const internals = require("./internals");
 // const { read } = require("./internals/response");
 
 function makeRequest(url, data) {
-  internals.request.send(url, data);
-  return internals.response.read();
+  internals.send(url, data);
+  return internals.read();
 }
 
 const responseData = makeRequest("https://google.com", "hello");
