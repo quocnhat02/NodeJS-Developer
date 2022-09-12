@@ -31,7 +31,7 @@ server.on("request", (req, res) => {
     } else {
       res.end(JSON.stringify(friends));
     }
-  } else if (items[1] === "/message") {
+  } else if (items[1] === "message") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<body>");
