@@ -1,6 +1,6 @@
-const { request } = require("https");
+const { get } = require("https");
 
-const req = request("https://www.google.com", (res) => {
+const req = get("https://www.google.com", (res) => {
   res.on("data", (chunk) => {
     console.log(`Data chunk: ${chunk}`);
   });
@@ -8,5 +8,3 @@ const req = request("https://www.google.com", (res) => {
     console.log("No more data");
   });
 });
-
-req.end();
