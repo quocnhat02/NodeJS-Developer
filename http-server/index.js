@@ -4,6 +4,17 @@ const PORT = 3000;
 
 const server = http.createServer();
 
+const friends = [
+  {
+    id: 0,
+    name: "Nicola Tesla",
+  },
+  {
+    id: 1,
+    name: "Sir Isaac Newton",
+  },
+];
+
 server.on("request", (req, res) => {
   if (req.url === "/friends") {
     // res.writeHead(200, {
