@@ -6,4 +6,5 @@ function makeRequest(url, data) {
   return response.read();
 }
 
-makeRequest("https://google.com", "hello");
+const responseData = makeRequest("https://google.com", "hello");
+console.log(responseData);
