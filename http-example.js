@@ -1,6 +1,6 @@
 const http = require("http");
 
-http.request("http://www.google.com", (res) => {
+const req = http.request("http://www.google.com", (res) => {
   res.on("data", (chunk) => {
     console.log(`Data chunk: ${chunk}`);
   });
@@ -8,3 +8,5 @@ http.request("http://www.google.com", (res) => {
     console.log("No more data");
   });
 });
+
+req.end();
