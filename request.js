@@ -7,4 +7,7 @@ axios
   })
   .catch((err) => {
     console.log(err);
+  })
+  .then(() => {
+    console.log("All done");
   });
