@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 
 const planetsRouter = require("./routes/planets/planets.router");
@@ -17,6 +18,7 @@ app.use(
     extended: true,
   })
 );
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 // ROUTES
 app.use(planetsRouter);
