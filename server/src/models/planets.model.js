@@ -24,7 +24,7 @@ function isHabitablePlanet(planet) {
  console.log(result);
 */
 function loadPlanetsData() {
-  return new promises((resolve, rejects) => {
+  return new Promise((resolve, rejects) => {
     fs.createReadStream("kepler_data.csv")
       .pipe(
         parse({
