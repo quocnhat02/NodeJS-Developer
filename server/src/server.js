@@ -8,8 +8,12 @@ const PORT = process.env.PORT || 8000;
 
 const server = http.createServer(app);
 
-await loadPlanetsData();
+async function startServer() {
+  await loadPlanetsData();
 
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
-});
+  server.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}...`);
+  });
+}
+
+startServer();
