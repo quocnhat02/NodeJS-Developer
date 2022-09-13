@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-developer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "watch": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quocnhat02/NodeJS-Developer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quocnhat02/NodeJS-Developer/issues"
+  },
+  "homepage": "https://github.com/quocnhat02/NodeJS-Developer#readme"
+}
