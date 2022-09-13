@@ -1,7 +1,6 @@
-const { rejects } = require("assert");
-const { parse } = require("csv-parse");
 const fs = require("fs");
-const { resolve } = require("path");
+const path = require("path");
+const { parse } = require("csv-parse");
 
 const habitablePlanets = [];
 
@@ -25,7 +24,9 @@ function isHabitablePlanet(planet) {
 */
 function loadPlanetsData() {
   return new Promise((resolve, rejects) => {
-    fs.createReadStream("kepler_data.csv")
+    fs.createReadStream(
+      path.join(__dirname, "..", "..", "data", "kepler_data.csv")
+    )
       .pipe(
         parse({
           comment: "#",
