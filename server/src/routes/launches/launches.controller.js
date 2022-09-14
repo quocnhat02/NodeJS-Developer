@@ -15,4 +15,5 @@ function httpAddNewLaunches(req, res) {
 
 module.exports = {
   httpGetAllLaunches,
+  httpAddNewLaunches,
 };
