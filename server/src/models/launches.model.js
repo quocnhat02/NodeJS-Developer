@@ -44,8 +44,8 @@ function abortLaunchById(launchId) {
 }
 
 module.exports = {
+  existLaunchWithId,
   getAllLaunches,
   addNewLaunch,
-  existLaunchWithId,
   abortLaunchById,
 };
