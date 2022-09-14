@@ -24,6 +24,7 @@ function addNewLaunch(launch) {
   launches.set(
     latestFlightNumber,
     Object.assign(launch, {
+      customer: ["Zero to Mastery", "NASA"],
       flightNumber: latestFlightNumber,
     })
   );
