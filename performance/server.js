@@ -17,3 +17,5 @@ app.get("/timer", (req, res) => {
   delay(9000);
   res.send("Ding ding ding!");
 });
+
+app.listen(3030);
