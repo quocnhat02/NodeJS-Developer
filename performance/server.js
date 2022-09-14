@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
   res.send(`Performance example: ${process.pid}`);
 });
 
+console.log("Running server.js...");
+
 app.get("/timer", (req, res) => {
   delay(9000);
   res.send(`Ding ding ding! ${process.pid}`);
