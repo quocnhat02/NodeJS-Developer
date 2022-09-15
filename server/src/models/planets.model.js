@@ -55,7 +55,7 @@ async function savePlanet(planet) {
         keplerName: planet.kepler_name,
       },
       {
-        keplerName: planet.kepler_name,
+        $set: { keplerName: planet.kepler_name },
       },
       {
         upsert: true,
