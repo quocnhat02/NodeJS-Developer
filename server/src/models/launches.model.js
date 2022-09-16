@@ -22,7 +22,7 @@ const SPACEX_API_URL = "https://api.spacexdata.com/v4/launches/query";
 
 async function loadLaunchData() {
   console.log("Downloading launch data");
-  await axios.post(SPACEX_API_URL, {
+  const response = await axios.post(SPACEX_API_URL, {
     query: {},
     options: {
       populate: [
@@ -30,6 +30,12 @@ async function loadLaunchData() {
           path: "rocket",
           select: {
             name: 1,
+          },
+        },
+        {
+          path: "payloads",
+          select: {
+            customers: 1,
           },
         },
       ],
