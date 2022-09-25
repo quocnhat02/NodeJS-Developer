@@ -20,4 +20,8 @@ router.post('/', (req, res) => {
   );
 });
 
+router.get('/:id', (req, res) => {
+  return res.send('THE GET ID ROUTE');
+});
+
 export default router;
