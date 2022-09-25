@@ -4,9 +4,14 @@ const router = express.Router();
 
 const users = [
   {
-    firstName: 'john',
+    firstName: 'John',
     lastName: 'Doe',
     age: 25,
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    age: 24,
   },
 ];
 
