@@ -1,30 +1,25 @@
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
-import {
-  Arwes,
-  SoundsProvider,
-  ThemeProvider,
-  createSounds,
-  createTheme,
-} from "arwes";
+import logo from './logo.svg';
+import './App.css';
 
-import AppLayout from "./pages/AppLayout";
-
-import { theme, resources, sounds } from "./settings";
-
-const App = () => {
-  return <ThemeProvider theme={createTheme(theme)}>
-    <SoundsProvider sounds={createSounds(sounds)}>
-      <Arwes animate background={resources.background.large} pattern={resources.pattern}>
-        {anim => (
-          <Router>
-            <AppLayout show={anim.entered} />
-          </Router>
-        )}
-      </Arwes>
-    </SoundsProvider>
-  </ThemeProvider>;
-};
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
 
 export default App;
