@@ -16,8 +16,9 @@ const users = [
 ];
 
 router.get('/', (req, res) => {
-  console.log(users);
-  return res.send('Hello');
+  return res.json(users);
 });
+
+router.post('/', (req, res) => {});
 
 export default router;
