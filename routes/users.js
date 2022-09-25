@@ -19,6 +19,10 @@ router.get('/', (req, res) => {
   return res.json(users);
 });
 
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  console.log('POST ROUTE REACHED');
+
+  return res.send('POST ROUTE REACHED');
+});
 
 export default router;
