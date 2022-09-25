@@ -21,9 +21,11 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  console.log(req.params);
+  const { id } = req.params;
 
-  return res.send(req.params);
+  const foundUser = users.find((user) => user.id === id);
+
+  return res.json(foundUser);
 });
 
 export default router;
