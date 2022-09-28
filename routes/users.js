@@ -24,6 +24,9 @@ router.get('/:id', (req, res) => {
 
   const foundUser = users.find((user) => user.id === id);
 
+  if (!foundUser) {
+    return res.send('Not found user');
+  }
   return res.send(foundUser);
 });
 
