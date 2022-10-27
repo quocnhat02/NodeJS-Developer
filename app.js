@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const { toUSVString } = require('util');
 
 const app = express();
 
@@ -29,6 +30,13 @@ const tours = JSON.parse(
 app.get('/api/v1/tours/:id', (req, res) => {
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
+
+  if (!tour) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
 
   return res.status(200).json({
     status: 'success',
