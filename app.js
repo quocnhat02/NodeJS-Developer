@@ -3,6 +3,13 @@ const fs = require('fs');
 
 const app = express();
 
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 const PORT = 3000;
 
 // app.get('/', (req, res) => {
@@ -27,6 +34,11 @@ app.get('/api/v1/tours', (req, res) => {
       tours,
     },
   });
+});
+
+app.post('/api/v1/tours', (req, res) => {
+  console.log(req.body);
+  res.send('Done');
 });
 
 app.listen(PORT, () => {
