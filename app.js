@@ -1,6 +1,5 @@
 const express = require('express');
 const fs = require('fs');
-const { toUSVString } = require('util');
 
 const app = express();
 
@@ -10,6 +9,11 @@ app.use(
     extended: true,
   })
 );
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
 
 const PORT = 3000;
 
@@ -106,6 +110,7 @@ const deleteTour = (req, res) => {
 // app.delete('/api/v1/tours/:id', deleteTour);
 
 app.route('api/v1/tours').get(getAllTours).post(createTour);
+
 app
   .route('/api/v1/tours/:id')
   .get(getTour)
