@@ -12,14 +12,23 @@ const getTour = (req, res) => {
   // });
 };
 
-const getAllTours = (req, res) => {
-  return res.status(200).json({
-    status: 'success',
-    // results: tours.length,
-    // data: {
-    //   tours,
-    // },
-  });
+const getAllTours = async (req, res) => {
+  try {
+    const tours = await Tour.find();
+
+    return res.status(200).json({
+      status: 'success',
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    return res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
 };
 
 const createTour = async (req, res) => {
