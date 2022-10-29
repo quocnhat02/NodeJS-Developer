@@ -152,4 +152,5 @@ module.exports = {
   createTour,
   updateTour,
   deleteTour,
+  getTourStats,
 };
