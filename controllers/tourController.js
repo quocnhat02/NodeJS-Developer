@@ -1,22 +1,10 @@
 const Tour = require('../models/tourModel');
 
-const getTour = async (req, res) => {
-  try {
-    const tour = await Tour.findById(req.params.id);
-    // Tour.findOne({_id: req.params.id})
-
-    return res.status(200).json({
-      status: 'success',
-      data: {
-        tour,
-      },
-    });
-  } catch (error) {
-    return res.status(404).json({
-      status: 'fail',
-      message: error,
-    });
-  }
+const aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  next();
 };
 
 const getAllTours = async (req, res) => {
@@ -73,6 +61,25 @@ const getAllTours = async (req, res) => {
       results: tours.length,
       data: {
         tours,
+      },
+    });
+  } catch (error) {
+    return res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+
+const getTour = async (req, res) => {
+  try {
+    const tour = await Tour.findById(req.params.id);
+    // Tour.findOne({_id: req.params.id})
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
       },
     });
   } catch (error) {
@@ -144,6 +151,7 @@ const deleteTour = async (req, res) => {
 };
 
 module.exports = {
+  aliasTopTours,
   getAllTours,
   getTour,
   createTour,
