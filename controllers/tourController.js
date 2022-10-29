@@ -24,6 +24,16 @@ class APIFeatures {
 
     this.query.find(JSON.parse(queryStr));
   }
+
+  sort() {
+    if (this.queryString.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+
+      this.query = this.query.sort(sortBy);
+    } else {
+      this.query = this.query.sort('-createdAt');
+    }
+  }
 }
 
 const getAllTours = async (req, res) => {
@@ -42,13 +52,13 @@ const getAllTours = async (req, res) => {
     // let query = Tour.find(queryObj);
 
     // 2.Sorting
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(',').join(' ');
+    // if (req.query.sort) {
+    //   const sortBy = req.query.sort.split(',').join(' ');
 
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort('-createdAt');
-    }
+    //   query = query.sort(sortBy);
+    // } else {
+    //   query = query.sort('-createdAt');
+    // }
 
     // 3.Field limiting
     if (req.query.fields) {
@@ -73,7 +83,8 @@ const getAllTours = async (req, res) => {
     }
 
     // EXECUTE QUERY
-    const tours = await query;
+    const features = new APIFeatures(Tour.find(), req.query).filter().sort();
+    const tours = await features.query;
 
     return res.status(200).json({
       status: 'success',
