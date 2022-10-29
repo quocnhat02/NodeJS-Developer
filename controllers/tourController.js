@@ -23,6 +23,8 @@ class APIFeatures {
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
     this.query.find(JSON.parse(queryStr));
+
+    return this;
   }
 
   sort() {
@@ -33,6 +35,8 @@ class APIFeatures {
     } else {
       this.query = this.query.sort('-createdAt');
     }
+
+    return this;
   }
 }
 
