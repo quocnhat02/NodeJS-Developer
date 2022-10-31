@@ -52,28 +52,24 @@ const getTour = async (req, res) => {
   }
 };
 
-const createTour = async (req, res) => {
-  try {
-    // const newTour = new Tour({})
-    // newTour.save();
-
-    const newTour = await Tour.create(req.body);
-
-    return res.status(201).json({
-      message: {
-        status: 'success',
-        data: {
-          tours: newTour,
-        },
-      },
-    });
-  } catch (error) {
-    return res.status(404).json({
-      status: 'fail',
-      message: error,
-    });
-  }
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch(next);
+  };
 };
+
+const createTour = catchAsync(async (req, res, next) => {
+  const newTour = await Tour.create(req.body);
+
+  return res.status(201).json({
+    message: {
+      status: 'success',
+      data: {
+        tours: newTour,
+      },
+    },
+  });
+});
 
 const updateTour = async (req, res) => {
   try {
